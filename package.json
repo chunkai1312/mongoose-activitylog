@@ -1,6 +1,6 @@
 {
   "name": "mongoose-activitylog",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A mongoose plugin for logging activities",
   "scripts": {
     "test": "nyc mocha",
