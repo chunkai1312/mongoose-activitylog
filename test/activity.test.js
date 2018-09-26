@@ -56,8 +56,12 @@ describe('mongoose-activitylog', () => {
   describe('#log()', () => {
     it('should log a activity', async () => {
       await new Activity().log('Look mum, I logged something')
+
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
+
       expect(activity.description).to.equal('Look mum, I logged something')
+      expect(activities[0]).to.eql(activity)
     })
   })
 
@@ -68,9 +72,11 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
+      expect(activities[0]).to.eql(activity)
     })
 
     it('should have alias #on()', async () => {
@@ -79,9 +85,11 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
+      expect(activities[0]).to.eql(activity)
     })
   })
 
@@ -93,10 +101,12 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
+      expect(activities[0]).to.eql(activity)
     })
 
     it('should have alias #by()', async () => {
@@ -106,10 +116,12 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
+      expect(activities[0]).to.eql(activity)
     })
   })
 
@@ -122,12 +134,14 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
       expect(activity.properties).to.eql({ key: 'value' })
       expect(activity.getExtraProperty('key')).to.equal('value')
+      expect(activities[0]).to.eql(activity)
     })
 
     it('should have alias #with()', async () => {
@@ -138,12 +152,14 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
       expect(activity.properties).to.eql({ key: 'value' })
       expect(activity.getExtraProperty('key')).to.equal('value')
+      expect(activities[0]).to.eql(activity)
     })
   })
 
@@ -156,12 +172,14 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
       expect(activity.properties).to.eql({ key: 'value' })
       expect(activity.getExtraProperty('key')).to.equal('value')
+      expect(activities[0]).to.eql(activity)
     })
 
     it('should have alias #with()', async () => {
@@ -172,12 +190,14 @@ describe('mongoose-activitylog', () => {
         .log('new post')
 
       const activity = await Activity.findOne().sort('-createdAt').exec()
+      const activities = await Activity.find().sort('-createdAt').exec()
 
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
       expect(activity.properties).to.eql({ key: 'value' })
       expect(activity.getExtraProperty('key')).to.equal('value')
+      expect(activities[0]).to.eql(activity)
     })
   })
 })
