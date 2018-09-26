@@ -28,7 +28,7 @@ ActivitySchema.plugin(activitylog)
 const Activity = mongoose.model('Activity', ActivitySchema)
 ```
 
-### Log a activity
+### Log an activity
 
 This is the most basic way to log activity:
 
@@ -91,6 +91,100 @@ activity.getExtraProperty('key') // returns 'value'
 ```
 
 The `withProperties()` function has a shorter alias named: `with`
+
+## API
+
+- [log()](#log)
+- [performedOn()](#performedon)
+- [causedBy()](#causedby)
+- [withProperties()](#withproperties)
+- [withProperty()](#withproperty)
+- [useLog()](#uselog)
+- [use()](#use)
+- [on()](#on)
+- [by()](#by)
+- [with()](#with)
+
+### log()
+
+```js
+log(description: string): Promise
+```
+
+Log an activity.
+
+### performedOn()
+
+```js
+performedOn(doc: Document): this
+```
+
+Specify on which object the activity is performed.
+
+### causedBy()
+
+```js
+causedBy(doc: Document): this
+```
+
+Set who or what caused the activity.
+
+### withProperties()
+
+```js
+withProperties(properties: object): this
+```
+
+Add properties to the activity.
+
+### withProperty()
+
+```js
+withProperty(key: string, value: any): this
+```
+
+Add a property to the activity by key.
+
+### useLog()
+
+```js
+useLog(logName: string): this
+```
+
+Specify log name of the activity.
+
+### use()
+
+```js
+use(logName: string): this
+```
+
+Alias of `useLog()`.
+
+### on()
+
+```js
+on(doc: Document): this
+```
+
+Alias of `performedOn()`.
+
+### by()
+
+```js
+by(doc: Document): this
+```
+
+Alias of `causedBy()`.
+
+### with()
+
+```js
+with(properties: object): this
+with(key: string, value: any): this
+```
+
+Alias of `withProperties()` / `withProperty()`.
 
 ## Note
 
