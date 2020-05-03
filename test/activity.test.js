@@ -60,7 +60,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('Look mum, I logged something')
     })
   })
@@ -74,7 +74,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
     })
@@ -87,13 +87,13 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
     })
 
     it('should ignore to set subject when subject is undefined', async () => {
-      expect(new Activity().performedOn().subject).to.be.null
+      expect(new Activity().performedOn().subject).to.be.undefined
     })
 
     it('should throw error when subject is not a mongoose document', async () => {
@@ -111,7 +111,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
@@ -126,14 +126,14 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
     })
 
     it('should ignore to set causer when causer is undefined', async () => {
-      expect(new Activity().causedBy().causer).to.be.null
+      expect(new Activity().causedBy().causer).to.be.undefined
     })
 
     it('should throw error when causer is not a mongoose document', async () => {
@@ -152,7 +152,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
@@ -170,7 +170,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
@@ -190,7 +190,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
@@ -208,7 +208,7 @@ describe('mongoose-activitylog', () => {
       const activity = await Activity.findOne().sort('-createdAt').exec()
       const activities = await Activity.find().sort('-createdAt').exec()
 
-      expect(activity).to.eql(activities[0])
+      expect(activity.toJSON()).to.eql(activities[0].toJSON())
       expect(activity.description).to.equal('new post')
       expect(activity.subject).to.have.property('title', 'new title')
       expect(activity.causer).to.have.property('name', 'test user')
